@@ -351,7 +351,6 @@ const sidebars = {
         id: 'contribute/nodes/full-node',
       },
       items: [
-        'contribute/nodes/full-node',
         'contribute/nodes/validator',
         'contribute/nodes/database-snapshots',
         'contribute/nodes/observability',
