@@ -28,11 +28,11 @@ different weights for each key (which is complex in threshold cryptography), Mul
 transaction. On the other hand, threshold signatures provide the benefits of hiding the threshold policy, but also
 resulting in a single signature payload, making it indistinguishable from a single-key account.
 
-![MultiSig Sui supported structures](../../../static/cryptography/sui_multisig_structures.png "MultiSig Sui supported structures")
+![MultiSig Sui supported structures](/img/sui_multisig_structures.png "MultiSig Sui supported structures")
 
 # Example Workflow
 
-Here we demonstrate the steps to create a MultiSig transaction in Sui using CLI and then submit it using the Sui CLI against a local network. A transaction can be a transfer of an object, publish or upgrade a package, pay Sui, etc. To learn how to set up a local network, see [Sui Local Network](../build/sui-local-network.md)
+Here we demonstrate the steps to create a MultiSig transaction in Sui using CLI and then submit it using the Sui CLI against a local network. A transaction can be a transfer of an object, publish or upgrade a package, pay Sui, etc. To learn how to set up a local network, see [Sui Local Network](../../build/setup/local-network.mdx)
 
 ## Step 1: Add keys to Sui keystore
 
@@ -78,7 +78,7 @@ $ADDR_3    | $PK_3              |   3
 
 ## Step 3: Send objects to a MultiSig address
 
-This example requests gas from a local network using the default URL following the guidance in [Sui Local Network](../build/sui-local-network.md).
+This example requests gas from a local network using the default URL following the guidance in [Sui Local Network](../../build/setup/local-network.mdx).
 
 ```shell
 curl --location --request POST 'http://127.0.0.1:9123/gas' --header 'Content-Type: application/json' --data-raw "{ \"FixedAmountRequest\": { \"recipient\": \"$MULTISIG_ADDR\" } }"
@@ -92,7 +92,7 @@ The response resembles the following:
 
 ## Step 3: Serialize ANY transaction
 
-This section demonstrates how to use an object that belongs to a MultiSig address and serialize a transfer to be signed. Note that the tx_bytes can be _ANY_ serialized transaction data where the sender is the MultiSig address, simply use the `--serialize-unsigned-transaction` flag for supported commands in `sui client -h` (e.g. `publish`, `upgrade`, `call`, `transfer`, `transfer-sui`, `pay`, `pay-all-sui`, `pay-sui`, `split`, `merge-coin`) to output the Base64 encoded transaction bytes.
+This section demonstrates how to use an object that belongs to a MultiSig address and serialize a transfer to be signed. Note that the tx*bytes can be \_ANY* serialized transaction data where the sender is the MultiSig address, simply use the `--serialize-unsigned-transaction` flag for supported commands in `sui client -h` (e.g. `publish`, `upgrade`, `call`, `transfer`, `transfer-sui`, `pay`, `pay-all-sui`, `pay-sui`, `split`, `merge-coin`) to output the Base64 encoded transaction bytes.
 
 ```shell
 $SUI_BINARY client transfer --to $SOME_ADDR --object-id $OBJECT_ID --gas-budget 100000 --serialize-unsigned-transaction

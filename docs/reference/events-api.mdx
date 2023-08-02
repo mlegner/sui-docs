@@ -3,7 +3,7 @@ title: Sui Events API
 slug: /events-api
 ---
 
-Sui [Full nodes](fullnode.md) support publish / subscribe using [JSON-RPC](json-rpc.md) notifications via the WebSocket
+Sui [Full nodes](../contribute/nodes/full-node.mdx) support publish / subscribe using [JSON-RPC](../reference/json-rpc/read-api.mdx) notifications via the WebSocket
 API. You can use this service with Sui client to filter and subscribe to a real-time event stream generated from Move or
 from the Sui network.
 
@@ -30,21 +30,18 @@ Move event attributes:
 
 ```json
 {
-  "id": {
-    "txDigest": "7GV246XCe71e7ssFVV17k2GvcPypQ5ES2DBLtucW8r3b",
-    "eventSeq": "0"
-  },
-  "packageId": "<PACKAGE-ID>",
-  "transactionModule": "devnet_nft",
-  "sender": "0xce1bf7db5ad6b04bfc305c049f08b80d5ccdc5d6d65d2ded13e95516d1e9fa22",
-  "type": "<PACKAGE-ID>::devnet_nft::MintNFTEvent",
-  "parsedJson": {
-    "creator": "0xce1bf7db5ad6b04bfc305c049f08b80d5ccdc5d6d65d2ded13e95516d1e9fa22",
-    "name": "test2",
-    "object_id": "0x07d16da80bd9b9859c5aa2b8656f8f4189cf57291439de61be13d0c75b0802c8"
-  },
-  "bcs": "Lvj1v5oebk4YsieXhwMBKP1m1vjwuLQgYry9ZAYnWB2hYEdikvji7aSs2xQideVwqj6mrXsLuKk5jY2FJWC2X4VTW49PwRT",
-  "timestampMs": "1685959791871"
+  "moveEvent": {
+    "packageId": "<PACKAGE-ID>",
+    "transactionModule": "nft",
+    "sender": "0x008e9c621f4fdb210b873aab59a1e5bf32ddb1d33ee85eb069b348c234465106",
+    "type": "<PACKAGE-ID>::nft::MintNFTEvent",
+    "fields": {
+      "creator": "0x008e9c621f4fdb210b873aab59a1e5bf32ddb1d33ee85eb069b348c234465106",
+      "name": "NFT",
+      "object_id": "0x727b37454ab13d5c1dbb22e8741bff72b145d1e660f71b275c01f24e7860e5e5"
+    },
+    "bcs": "SXkTpH3AAoqF8kxw2CWZG3HGAAFwYT9PF64TY/en5yUdqrXFsG9owQtFeGFtcGxlIE5GVA=="
+  }
 }
 ```
 
@@ -52,6 +49,7 @@ Move event attributes:
 
 You can use the `EventFilter` object to query a Sui node and retrieve events that match query criteria.
 
+```
 | Query       | Description                                               | JSON-RPC Parameter Example                                                      |
 | ----------- | --------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | All         | All events                                                | {"All"}                                                                         |
@@ -62,6 +60,7 @@ You can use the `EventFilter` object to query a Sui node and retrieve events tha
 | Sender      | Query by sender address                                   | {"Sender":"0x008e9c621f4fdb210b873aab59a1e5bf32ddb1d33ee85eb069b348c234465106"} |
 | Object      | Return events associated with the given object            | {"Object":"0x727b37454ab13d5c1dbb22e8741bff72b145d1e660f71b275c01f24e7860e5e5"} |
 | TimeRange   | Return events emitted in [start_time, end_time] interval  | {"TimeRange":{"startTime":1669039504014, "endTime":1669039604014}}              |
+```
 
 ## Pagination
 
